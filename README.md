@@ -3,4 +3,4 @@
 
 
 # License
-libanime © 2023 by nyakokitsu is licensed under CC BY-NC 4.0 
+libanime © 2023 by libanime Team is licensed under CC BY-NC 4.0 
