@@ -10,6 +10,11 @@
 .svn/
 migrate_working_dir/
 
+
+# Any env files
+*.env
+test/*.env
+
 # IntelliJ related
 *.iml
 *.ipr

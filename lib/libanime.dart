@@ -16,9 +16,7 @@ class Parser {
     }
     
   }
-  Object? parseKodik(String link) {
-
-  } 
+  
 
 }
 
