@@ -17,7 +17,7 @@ class Sibnet {
         final url = "https://video.sibnet.ru${parseRes(response.data.toString())!}";
         return Video(480, "mp4", url, {"Referer": url});
 
-      } on DioException catch (e) { 
+      } on DioException { 
         throw Exception("An error has occurred");
       }
     } else {
