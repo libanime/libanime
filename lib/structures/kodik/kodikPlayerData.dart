@@ -8,8 +8,6 @@ class KodikData {
     String? type = RegExp(r"videoInfo.type = '(.*?)';").firstMatch(data)![1];
     String? hash = RegExp(r"videoInfo.hash = '(.*?)';").firstMatch(data)![1];
     String? id = RegExp(r"videoInfo.id = '(.*?)';").firstMatch(data)![1];
-    final bad_user = "False";
-    final info = {};
     return {
       "domain": domain,
       "d_sign": d_sign,

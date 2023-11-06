@@ -1,7 +1,7 @@
-import '../../structures/service.dart';
-import '../../structures/video.dart';
+import '../../../structures/service.dart';
+import '../../../structures/video.dart';
 import 'package:dio/dio.dart';
-import '../detect.dart';
+import '../../detect.dart';
 
 class Sibnet {
   final regex = r'(?<url>\/v\/.*?\.mp4)';

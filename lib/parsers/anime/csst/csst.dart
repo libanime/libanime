@@ -1,7 +1,7 @@
-import '../../structures/service.dart';
-import '../../structures/video.dart';
+import '../../../structures/service.dart';
+import '../../../structures/video.dart';
 import 'package:dio/dio.dart';
-import '../detect.dart';
+import '../../detect.dart';
 
 class CSST {
   final regex = r"\[(?<quality>\d{3,4})p\](?<url>https?:\/\/(?:www\.)?.*?\.mp4)";
@@ -11,7 +11,7 @@ class CSST {
     return Service("csst/secvideo", "unknown", true, false);
   }
 
-  Future<Map<String, Video>>? parse(String link) async { //Future<Map<String, Video>>?
+  Future<Map<String, Video>>? parse(String link) async {
     if (Detect().validate(link, "csst")) {
       try {
         final response = await dio.get(link);

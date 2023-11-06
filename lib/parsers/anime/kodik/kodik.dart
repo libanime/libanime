@@ -1,9 +1,9 @@
 import 'package:dio/dio.dart';
 import 'package:libanime/structures/video.dart';
-import '../detect.dart';
+import '../../detect.dart';
 //import '../../enum/services.dart';
-import '../../structures/service.dart';
-import '../../structures/kodik/kodikPlayerData.dart';
+import '../../../structures/service.dart';
+import '../../../structures/kodik/kodikPlayerData.dart';
 import 'dart:convert';
 
 class Kodik {
