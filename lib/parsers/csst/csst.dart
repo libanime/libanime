@@ -28,7 +28,7 @@ class CSST {
         }
         return nyaa;
 
-      } on DioException catch (e) { 
+      } on DioException { 
         throw Exception("An error has occurred");
       }
     } else {
