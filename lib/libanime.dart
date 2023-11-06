@@ -1,23 +1,9 @@
 library libanime;
-import 'dart:io';
-import './parsers/detect.dart';
 
-import 'enum/services.dart';
-
-class Parser {
-  String? parse(String url, Service? type) {
-
-    if (type != null) {
-      if (type == Service.kodik) {
-
-      }
-    } else {
-      
-    }
-    
-  }
-  
-
-}
+import 'dart:ui';
+export './parsers/csst/csst.dart' show CSST;
+export './parsers/kodik/kodik.dart' show Kodik;
+export './parsers/sibnet/sibnet.dart' show Sibnet;
+//export './utils/aniskip.dart' show AniSkip;
 
 
