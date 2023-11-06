@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:dio/dio.dart';
 import 'package:libanime/structures/video.dart';
 import '../detect.dart';

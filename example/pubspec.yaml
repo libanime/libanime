@@ -1,0 +1,15 @@
+name: libanime_examples
+description: Parsing examples for libanime
+version: 1.0.0
+publish_to: none
+
+environment:
+  sdk: '>=3.1.5 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  libanime: ^0.0.1
+
+
+dev_dependencies:
+  lints: ^2.0.0

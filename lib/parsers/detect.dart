@@ -1,4 +1,3 @@
-import '../enum/services.dart';
 import 'detect_regex.dart';
 
 class Detect {
