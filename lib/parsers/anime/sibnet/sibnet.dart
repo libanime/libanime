@@ -1,5 +1,7 @@
 import '../../../structures/service.dart';
 import '../../../structures/video.dart';
+import '../../../structures/media_type.dart';
+import '../../../structures/languages.dart';
 import 'package:dio/dio.dart';
 import '../../detect.dart';
 
@@ -8,7 +10,7 @@ class Sibnet {
   final dio = Dio();
 
   Service getService() {
-    return Service("sibnet", "ru", true, false);
+    return Service("sibnet", Language.ru, true, MediaType.anime);
   }
   Future<Video> parse(String link) async {
     if (Detect().validate(link, "sibnet")) {

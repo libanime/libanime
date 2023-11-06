@@ -3,6 +3,8 @@ import 'package:libanime/structures/video.dart';
 import '../../detect.dart';
 //import '../../enum/services.dart';
 import '../../../structures/service.dart';
+import '../../../structures/media_type.dart';
+import '../../../structures/languages.dart';
 import '../../../structures/kodik/kodikPlayerData.dart';
 import 'dart:convert';
 
@@ -11,7 +13,7 @@ class Kodik {
   Kodik([this.tokenSaved]);
 
   Service getService() {
-    return Service("kodik", "ru", true, false);
+    return Service("kodik", Language.ru, true, MediaType.anime);
   }
   var dio = Dio();
   Future<Map<String, Video>>? parse(String link, [bool mp4 = false]) async {
