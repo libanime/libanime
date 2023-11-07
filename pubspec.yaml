@@ -4,7 +4,8 @@ version: 0.0.1
 
 homepage: https://github.com/libanime/libanime/
 repository: https://github.com/libanime/libanime/
-publish_to: pub.dev
+funding:
+ - https://boosty.to/libanime
 
 environment:
   sdk: '>=3.1.5 <4.0.0'
