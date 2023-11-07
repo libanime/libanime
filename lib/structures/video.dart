@@ -1,7 +1,6 @@
 /*
   MetaVideo class contains direct link and information like type, quality
  */
-import 'dart:ffi';
 
 class Video {
   int quality;
