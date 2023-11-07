@@ -1,9 +1,12 @@
 import 'package:dio/dio.dart';
 import 'package:libanime/structures/video.dart';
-import '../detect.dart';
+import '../../detect.dart';
 //import '../../enum/services.dart';
-import '../../structures/service.dart';
-import '../../structures/kodik/kodikPlayerData.dart';
+import '../../../structures/service.dart';
+import '../../../structures/media_type.dart';
+import '../../../structures/languages.dart';
+import '../../../structures/kodik/kodikPlayerData.dart';
+import '../../../exceptions/bad_data.dart';
 import 'dart:convert';
 
 class Kodik {
@@ -11,7 +14,7 @@ class Kodik {
   Kodik([this.tokenSaved]);
 
   Service getService() {
-    return Service("kodik", "ru", true, false);
+    return Service("kodik", Language.ru, true, MediaType.anime);
   }
   var dio = Dio();
   Future<Map<String, Video>>? parse(String link, [bool mp4 = false]) async {
@@ -51,7 +54,7 @@ class Kodik {
       }
       
     } else {
-      throw Exception("Bad url!");
+      throw BadDataException("Bad url!");
     }
   }
   String _caesarCipherDecoder(String text) {
@@ -103,7 +106,7 @@ String _decodeUrl(String urlEncoded) {
     } 
     } on DioException catch (e) { 
       if (e.response!.statusCode == 500) {
-      throw Exception("Bad Token or Player URL!");
+      throw BadDataException("Bad Token or Player URL!");
     } else {
       throw Exception("An error has occurred");
     }

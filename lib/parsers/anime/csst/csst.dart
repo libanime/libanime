@@ -1,17 +1,21 @@
-import '../../structures/service.dart';
-import '../../structures/video.dart';
+import 'package:libanime/exceptions/bad_data.dart';
+
+import '../../../structures/service.dart';
+import '../../../structures/video.dart';
 import 'package:dio/dio.dart';
-import '../detect.dart';
+import '../../detect.dart';
+import '../../../structures/media_type.dart';
+import '../../../structures/languages.dart';
 
 class CSST {
   final regex = r"\[(?<quality>\d{3,4})p\](?<url>https?:\/\/(?:www\.)?.*?\.mp4)";
   final dio = Dio();
 
   Service getService() {
-    return Service("csst/secvideo", "unknown", true, false);
+    return Service("csst/secvideo", Language.multi, true, MediaType.anime);
   }
 
-  Future<Map<String, Video>>? parse(String link) async { //Future<Map<String, Video>>?
+  Future<Map<String, Video>>? parse(String link) async {
     if (Detect().validate(link, "csst")) {
       try {
         final response = await dio.get(link);
@@ -32,7 +36,7 @@ class CSST {
         throw Exception("An error has occurred");
       }
     } else {
-      throw Exception("Bad url!");
+      throw BadDataException("Bad url!");
     }
   }
   

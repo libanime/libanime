@@ -1,8 +1,13 @@
+import './languages.dart';
+import './media_type.dart';
+
 class Service {
   final name;
-  final region;
+  Language language;
   final isPlayer;
-  final usesPlayer;
+  MediaType mediaType;
+  //List domains = []; need to be implemented
 
-  Service(this.name, this.region, this.isPlayer, this.usesPlayer);
+
+  Service(this.name, this.language, this.isPlayer, this.mediaType);
 }
