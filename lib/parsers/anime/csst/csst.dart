@@ -1,3 +1,5 @@
+import 'package:libanime/exceptions/bad_data.dart';
+
 import '../../../structures/service.dart';
 import '../../../structures/video.dart';
 import 'package:dio/dio.dart';
@@ -34,7 +36,7 @@ class CSST {
         throw Exception("An error has occurred");
       }
     } else {
-      throw Exception("Bad url!");
+      throw BadDataException("Bad url!");
     }
   }
   
