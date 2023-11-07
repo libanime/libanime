@@ -20,10 +20,16 @@ class Mangalib {
       
     }
     Future<Map> getInfoBySlug(String slug) async {
-      
-      final response = await _dio.get('/manga-short-info?slug=$slug'); // 404 if bad slug todo to implement
-      return response.data;
-
+      try {
+        final response = await _dio.get('/manga-short-info?slug=$slug'); // 404 if bad slug todo to implement
+        return response.data;
+      } on DioException catch (e) {
+        if (e.response!.statusCode == 400) {
+          throw Exception("Bad slug! Media not found!");
+        } else {
+          throw Exception("An error has occurred");
+        }
+      }
       
     }
     
