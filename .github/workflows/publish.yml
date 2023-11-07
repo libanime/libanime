@@ -13,6 +13,8 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: flutter-actions/setup-flutter@v2.3
+        with: 
+          version: 3.13.9
       - name: Install dependencies
         run: flutter pub get
       - name: Publish
