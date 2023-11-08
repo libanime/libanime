@@ -5,9 +5,7 @@ enum MediaType {
   hentai(type: 'hentai'),
   other(type: 'other');
 
-  const MediaType({
-    required this.type
-  });
+  const MediaType({required this.type});
 
   final String type;
 }

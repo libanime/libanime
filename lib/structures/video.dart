@@ -7,6 +7,6 @@ class Video {
   String type;
   String url;
   Map<String, String>? headers;
-  
+
   Video(this.quality, this.type, this.url, this.headers);
 }

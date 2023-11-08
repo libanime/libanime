@@ -12,5 +12,6 @@ class Manga {
   final List categories;
   final Service service;
 
-  Manga(this.titles, this.id, this.releaseDate, this.summary, this.authors, this.status, this.coverUrl, this.tags, this.categories, this.service);
+  Manga(this.titles, this.id, this.releaseDate, this.summary, this.authors,
+      this.status, this.coverUrl, this.tags, this.categories, this.service);
 }

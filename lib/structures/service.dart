@@ -2,12 +2,11 @@ import './languages.dart';
 import './media_type.dart';
 
 class Service {
-  final name;
+  String name;
   Language language;
-  final isPlayer;
+  bool isPlayer;
   MediaType mediaType;
   //List domains = []; need to be implemented
-
 
   Service(this.name, this.language, this.isPlayer, this.mediaType);
 }

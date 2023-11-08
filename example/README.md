@@ -1,2 +1,2 @@
-# examples
-> This is a player parse examples.
+# Examples
+See [here](https://github.com/libanime/libanime/tree/main/example).

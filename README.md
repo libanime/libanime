@@ -11,4 +11,4 @@ Need to do
 See [here](https://github.com/libanime/libanime/tree/main/example).
 
 # License
-libanime © 2023 by libanime Team is licensed under CC BY-NC 4.0 
+libanime © 2023 by libanime Team is licensed under BSD-3-Clause
