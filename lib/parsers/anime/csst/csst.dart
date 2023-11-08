@@ -8,7 +8,8 @@ import '../../../structures/media_type.dart';
 import '../../../structures/languages.dart';
 
 class CSST {
-  final regex = r"\[(?<quality>\d{3,4})p\](?<url>https?:\/\/(?:www\.)?.*?\.mp4)";
+  final regex =
+      r"\[(?<quality>\d{3,4})p\](?<url>https?:\/\/(?:www\.)?.*?\.mp4)";
   final dio = Dio();
 
   Service getService() {
@@ -23,21 +24,20 @@ class CSST {
         final nyaa = <String, Video>{};
         final existingLinks = <String>[];
         for (final Match m in links) {
-            if (!existingLinks.contains(m[2]!)) {
+          if (!existingLinks.contains(m[2]!)) {
             String quality = m[1]!;
-            final entry = MapEntry(quality, Video(int.parse(quality), "mp4", m[2]!, null)); 
+            final entry = MapEntry(
+                quality, Video(int.parse(quality), "mp4", m[2]!, null));
             nyaa.addEntries([entry]);
             existingLinks.add(m[2]!);
           }
         }
         return nyaa;
-
-      } on DioException { 
+      } on DioException {
         throw Exception("An error has occurred");
       }
     } else {
       throw BadDataException("Bad url!");
     }
   }
-  
 }

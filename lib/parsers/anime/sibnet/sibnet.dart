@@ -14,14 +14,15 @@ class Sibnet {
   Service getService() {
     return Service("sibnet", Language.ru, true, MediaType.anime);
   }
+
   Future<Video> parse(String link) async {
     if (Detect().validate(link, "sibnet")) {
       try {
         final response = await dio.get(link);
-        final url = "https://video.sibnet.ru${parseRes(response.data.toString())!}";
+        final url =
+            "https://video.sibnet.ru${parseRes(response.data.toString())!}";
         return Video(480, "mp4", url, {"Referer": url});
-
-      } on DioException { 
+      } on DioException {
         throw Exception("An error has occurred");
       }
     } else {
