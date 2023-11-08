@@ -1,19 +1,18 @@
-import 'package:libanime/exceptions/bad_data.dart';
-
 import '../../../structures/service.dart';
 import '../../../structures/video.dart';
 import '../../../structures/media_type.dart';
 import '../../../structures/languages.dart';
 import 'package:dio/dio.dart';
 import '../../detect.dart';
+import '../../../exceptions/bad_data.dart';
 
-// Sibnet player parser
-class Sibnet {
-  final regex = r'(?<url>\/v\/.*?\.mp4)';
+// preparings
+class SovetRomantica {
+  final regex = r'https?:\/\/(www\.)?[a-z1-9]{1,6}\.sovetromantica\.com\/(?:anime|dorama)\/.*\.m3u8"';
   final dio = Dio();
 
   Service getService() {
-    return Service("sibnet", Language.ru, true, MediaType.anime);
+    return Service("sovetromantica", Language.ru, true, MediaType.anime);
   }
 
   Future<Video> parse(String link) async {
@@ -21,7 +20,7 @@ class Sibnet {
       try {
         final response = await dio.get(link);
         final url =
-            "https://video.sibnet.ru${_parseRes(response.data.toString())!}";
+            "https://video.sibnet.ru";
         return Video(480, "mp4", url, {"Referer": url});
       } on DioException {
         throw Exception("An error has occurred");
@@ -29,9 +28,5 @@ class Sibnet {
     } else {
       throw BadDataException("Bad url!");
     }
-  }
-
-  String? _parseRes(String res) {
-    return RegExp(regex).firstMatch(res)![0];
   }
 }

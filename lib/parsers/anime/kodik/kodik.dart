@@ -9,6 +9,7 @@ import '../../../structures/kodik/kodik_player_data.dart';
 import '../../../exceptions/bad_data.dart';
 import 'dart:convert';
 
+// Kodik player parser
 class Kodik {
   String? tokenSaved;
   Kodik([this.tokenSaved]);
@@ -18,6 +19,12 @@ class Kodik {
   }
 
   var dio = Dio();
+  // Parse player url.
+  // Returns Video object
+  // ```dart
+  // var link = await kodik.parse(
+  //    "https://kodik.info/seria/1133512/04d5f7824ba3563bd78e44a22451bb45/720p");
+  //```
   Future<Map<String, Video>>? parse(String link, [bool mp4 = false]) async {
     if (Detect().validate(link, "kodik")) {
       final data = await _parsePlayer(link);
@@ -104,9 +111,9 @@ class Kodik {
     }
   }
 
+  // Search IDs via Kodik API by player_link field
+  // Token required! So.. you can find it on the internet or mail them with request for access.
   Future<Object>? mappingsFromLink(String link) async {
-    // Search via player_link field
-    // Token required! So.. you can find it on the internet or mail them with request for access.
     if (tokenSaved == null) {
       throw Exception("Token not set!");
     } else {
