@@ -1,6 +1,6 @@
 name: libanime
 description: A Dart/Flutter library for anime websites downloading and parsing.
-version: 0.0.2
+version: 0.0.3
 
 homepage: https://github.com/libanime/libanime/
 repository: https://github.com/libanime/libanime/
@@ -9,7 +9,6 @@ funding:
 
 environment:
   sdk: '>=3.1.5 <4.0.0'
-  flutter: ">=1.17.0"
 
 dependencies:
   dio: ^5.3.3
