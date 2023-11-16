@@ -1,3 +1,1 @@
-class AniBoom {
-  
-}
+class AniBoom {}

@@ -1,6 +1,12 @@
+
+## 0.0.6
+
+* Detect func
+
 ## 0.0.5
 
-* Many things
+* Some library improvements
+* Sovetromantica parser
 
 
 ## 0.0.4
