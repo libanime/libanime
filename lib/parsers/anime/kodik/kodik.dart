@@ -9,16 +9,17 @@ import '../../../structures/kodik/kodik_player_data.dart';
 import '../../../exceptions/bad_data.dart';
 import 'dart:convert';
 
+
 // Kodik player parser
 class Kodik {
-  String? tokenSaved;
-  Kodik([this.tokenSaved]);
+  String? token;
+  Kodik([this.token]);
 
   Service getService() {
     return Service("kodik", Language.ru, true, MediaType.anime);
   }
 
-  var dio = Dio();
+  var _dio = Dio();
   // Parse player url.
   // Returns Video object
   // ```dart
@@ -31,7 +32,7 @@ class Kodik {
       final domain = RegExp(
               r"(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]")
           .stringMatch(link);
-      final res = await dio.post(
+      final res = await _dio.post(
         "https://$domain/gvi",
         data: FormData.fromMap(data!),
         options: Options(headers: {
@@ -102,7 +103,7 @@ class Kodik {
   }
 
   Future<Map<String, dynamic>>? _parsePlayer(String link) async {
-    final response = await dio.get(link);
+    final response = await _dio.get(link);
     if (response.statusCode == 200) {
       final data = KodikData().get(response.data);
       return data;
@@ -114,12 +115,12 @@ class Kodik {
   // Search IDs via Kodik API by player_link field
   // Token required! So.. you can find it on the internet or mail them with request for access.
   Future<Object>? mappingsFromLink(String link) async {
-    if (tokenSaved == null) {
+    if (token == null) {
       throw Exception("Token not set!");
     } else {
       try {
-        final response = await dio.get(
-            'https://kodikapi.com/search?token=$tokenSaved&player_link=$link');
+        final response = await _dio.get(
+            'https://kodikapi.com/search?token=$token&player_link=$link');
 
         var data = response.data["results"][0];
         return {
@@ -130,6 +131,37 @@ class Kodik {
           "shikimori":
               data["shikimori_id"] ? data["shikimori_id"].toInt() : null
         };
+      } on DioException catch (e) {
+        if (e.response!.statusCode == 500) {
+          throw BadDataException("Bad Token or Player URL!");
+        } else {
+          throw Exception("An error has occurred");
+        }
+      }
+    }
+  }
+
+    Future<List> fetchCasts([String? malId, String? kodikId]) async {
+    if (token == null) {
+      throw Exception("Token not set!");
+    } else {
+      try {
+        final response = await _dio.get(
+            'https://kodikapi.com/search?token=$token&with_episodes=true&shikimori_id=$malId');
+
+        var data = response.data;
+        var items = [];
+        for(var i = 0; i < data["results"].length;i++) {
+              final last_ses = data["results"][i]["last_season"];
+              items.add({
+                "name" : data["results"][i]["translation"]["title"],
+                "kodik_id"  : data["results"][i]["translation"]["id"],
+                "episodes_count" : data["results"][i]["episodes_count"],
+                "type": data["results"][i]["translation"]["type"],
+                "episodes": data["results"][i]["seasons"]["$last_ses"]["episodes"]
+            });
+        }
+        return items;
       } on DioException catch (e) {
         if (e.response!.statusCode == 500) {
           throw BadDataException("Bad Token or Player URL!");

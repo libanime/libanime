@@ -9,8 +9,8 @@ import '../../detect.dart';
 
 // Sibnet player parser
 class Sibnet {
-  final regex = r'(?<url>\/v\/.*?\.mp4)';
-  final dio = Dio();
+  final _regex = r'(?<url>\/v\/.*?\.mp4)';
+  final _dio = Dio();
 
   Service getService() {
     return Service("sibnet", Language.ru, true, MediaType.anime);
@@ -19,7 +19,7 @@ class Sibnet {
   Future<Video> parse(String link) async {
     if (Detect().validate(link, "sibnet")) {
       try {
-        final response = await dio.get(link);
+        final response = await _dio.get(link);
         final url =
             "https://video.sibnet.ru${_parseRes(response.data.toString())!}";
         return Video(480, "mp4", url, {"Referer": url});
@@ -32,6 +32,6 @@ class Sibnet {
   }
 
   String? _parseRes(String res) {
-    return RegExp(regex).firstMatch(res)![0];
+    return RegExp(_regex).firstMatch(res)![0];
   }
 }
