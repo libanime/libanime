@@ -164,7 +164,7 @@ class Kodik {
         return items;
       } on DioException catch (e) {
         if (e.response!.statusCode == 500) {
-          throw BadDataException("Bad Token or Player URL!");
+          throw BadDataException("Bad Data!");
         } else {
           throw Exception("An error has occurred");
         }
