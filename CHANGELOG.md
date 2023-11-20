@@ -1,3 +1,7 @@
+## 0.0.8-2
+
+* Code improvements
+
 ## 0.0.8-1
 
 * Aniboom export

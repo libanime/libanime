@@ -43,10 +43,11 @@ class Aniboom {
         // эта хуйня возвращает целый комплект данных по плееру
         // если очень хочется включите extra
         final hls = jsonDecode(json["hls"]);
-        if (!extra)
+        if (!extra) {
           return Video(1080, "m3u8", hls["src"], _headers);
-        else
+        } else {
           return json;
+        }
       } on DioException {
         throw Exception("An error has occurred");
       }
