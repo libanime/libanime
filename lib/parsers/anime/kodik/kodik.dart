@@ -9,7 +9,6 @@ import '../../../structures/kodik/kodik_player_data.dart';
 import '../../../exceptions/bad_data.dart';
 import 'dart:convert';
 
-
 // Kodik player parser
 class Kodik {
   String? token;
@@ -119,8 +118,8 @@ class Kodik {
       throw Exception("Token not set!");
     } else {
       try {
-        final response = await _dio.get(
-            'https://kodikapi.com/search?token=$token&player_link=$link');
+        final response = await _dio
+            .get('https://kodikapi.com/search?token=$token&player_link=$link');
 
         var data = response.data["results"][0];
         return {
@@ -141,7 +140,7 @@ class Kodik {
     }
   }
 
-    Future<List> fetchCasts([String? malId, String? kodikId]) async {
+  Future<List> fetchCasts([String? malId, String? kodikId]) async {
     if (token == null) {
       throw Exception("Token not set!");
     } else {
@@ -151,15 +150,15 @@ class Kodik {
 
         var data = response.data;
         var items = [];
-        for(var i = 0; i < data["results"].length;i++) {
-              final last_ses = data["results"][i]["last_season"];
-              items.add({
-                "name" : data["results"][i]["translation"]["title"],
-                "kodik_id"  : data["results"][i]["translation"]["id"],
-                "episodes_count" : data["results"][i]["episodes_count"],
-                "type": data["results"][i]["translation"]["type"],
-                "episodes": data["results"][i]["seasons"]["$last_ses"]["episodes"]
-            });
+        for (var i = 0; i < data["results"].length; i++) {
+          final last_ses = data["results"][i]["last_season"];
+          items.add({
+            "name": data["results"][i]["translation"]["title"],
+            "kodik_id": data["results"][i]["translation"]["id"],
+            "episodes_count": data["results"][i]["episodes_count"],
+            "type": data["results"][i]["translation"]["type"],
+            "episodes": data["results"][i]["seasons"]["$last_ses"]["episodes"]
+          });
         }
         return items;
       } on DioException catch (e) {

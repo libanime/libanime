@@ -1,3 +1,13 @@
+## 0.0.8-1
+
+* Aniboom export
+
+## 0.0.7
+
+* Tests
+* Aniboom parser
+* optimizations
+* etc.
 
 ## 0.0.6
 

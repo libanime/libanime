@@ -11,8 +11,7 @@ void main(List<String> args) async {
   print(link!["360"]?.url);
 
   // Get Casts with episodes from MAL id(also Shikimori id) [TOKEN REQUIRED]
-  var casts = await kodik.fetchCasts(
-    "32");
+  var casts = await kodik.fetchCasts("32");
   print(casts);
 
   // Get mappings from link [TOKEN REQUIRED]
