@@ -13,7 +13,7 @@ import '../../../structures/languages.dart';
 class CSST {
   final regex =
       r"\[(?<quality>\d{3,4})p\](?<url>https?:\/\/(?:www\.)?.*?\.mp4)";
-  final dio = Dio();
+  final _dio = Dio();
 
   Service getService() {
     return Service("csst/secvideo", Language.multi, true, MediaType.anime);
@@ -22,7 +22,7 @@ class CSST {
   Future<Map<String, Video>>? parse(String link) async {
     if (Detect().validate(link, "csst")) {
       try {
-        final response = await dio.get(link);
+        final response = await _dio.get(link);
         final links = RegExp(regex).allMatches(response.data.toString());
         final nyaa = <String, Video>{};
         final existingLinks = <String>[];

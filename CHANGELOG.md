@@ -1,6 +1,30 @@
+## 0.0.8-3
+
+* Readme fix
+
+## 0.0.8-2
+
+* Code improvements
+
+## 0.0.8-1
+
+* Aniboom export
+
+## 0.0.7
+
+* Tests
+* Aniboom parser
+* optimizations
+* etc.
+
+## 0.0.6
+
+* Detect func
+
 ## 0.0.5
 
-* Many things
+* Some library improvements
+* Sovetromantica parser
 
 
 ## 0.0.4
