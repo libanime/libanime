@@ -1,3 +1,7 @@
+## 0.0.8
+
+* Microupdates to release
+
 ## 0.0.8-3
 
 * Readme fix
