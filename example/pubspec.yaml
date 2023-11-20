@@ -10,7 +10,7 @@ environment:
 dependencies:
   dio_http2_adapter: ^2.3.1+1
   html: ^0.15.4
-  libanime: ^0.0.1
+  libanime: ^0.0.8-3
 
 
 dev_dependencies:

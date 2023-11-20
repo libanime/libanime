@@ -1,3 +1,7 @@
+## 0.0.8-3
+
+* Readme fix
+
 ## 0.0.8-2
 
 * Code improvements
