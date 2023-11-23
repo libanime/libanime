@@ -151,13 +151,13 @@ class Kodik {
         var data = response.data;
         var items = [];
         for (var i = 0; i < data["results"].length; i++) {
-          final last_ses = data["results"][i]["last_season"];
+          final lastSes = data["results"][i]["last_season"];
           items.add({
             "name": data["results"][i]["translation"]["title"],
             "kodik_id": data["results"][i]["translation"]["id"],
             "episodes_count": data["results"][i]["episodes_count"],
             "type": data["results"][i]["translation"]["type"],
-            "episodes": data["results"][i]["seasons"]["$last_ses"]["episodes"]
+            "episodes": data["results"][i]["seasons"]["$lastSes"]["episodes"]
           });
         }
         return items;

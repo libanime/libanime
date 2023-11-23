@@ -1,3 +1,5 @@
+import 'package:libanime/exceptions/bad_response.dart';
+
 import '../../../exceptions/unauthorized.dart';
 import './endpoints.dart';
 import 'package:dio/dio.dart';
@@ -26,7 +28,7 @@ class Anime365 {
         throw Unauthorized();
       }
     } on DioException {
-        throw Exception("An error has occurred");
+        throw BadResponseException();
       }
   }
 }

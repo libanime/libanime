@@ -1,7 +1,7 @@
 class NotFoundException implements Exception {
   late String _message;
 
-  NotFoundException([String message = 'Invalid value']) {
+  NotFoundException([String message = 'Not found']) {
     _message = message;
   }
 

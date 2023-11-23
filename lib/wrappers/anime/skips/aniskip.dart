@@ -1,4 +1,6 @@
 import 'package:dio/dio.dart';
+import 'package:libanime/exceptions/bad_response.dart';
+import 'package:libanime/exceptions/not_found.dart';
 
 class AniSkip {
   Future<List<Object>>? getTimings(
@@ -9,10 +11,10 @@ class AniSkip {
       return response.data["results"];
     } on DioException catch (e) {
       if (!e.response!.data["found"]) {
-        throw Exception(
+        throw NotFoundException(
             "Not found. May be you're provided bad malId, episode or episodeDuration.");
       } else {
-        throw Exception("An error has occurred");
+        throw BadResponseException("An error has occurred");
       }
     }
   }
