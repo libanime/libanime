@@ -24,6 +24,7 @@ dependencies:
   html: ^0.15.4
   pubspec_parse: ^1.2.3
   test: ^1.24.9
+  universal_html: ^2.2.4
   xpath_selector_html_parser: ^3.0.1
 
 dev_dependencies:

@@ -1,0 +1,5 @@
+import '';
+
+class Anime {
+  
+}

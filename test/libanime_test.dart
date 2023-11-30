@@ -1,8 +1,8 @@
-import 'package:libanime/libanime.dart';
+import 'package:libanime/parsers/anime.dart';
 import 'package:test/test.dart';
 
-/// Parsers tests
 void main() {
+  /// Parsers tests
   test('Sibnet', () async {
     final video = await Sibnet()
         .parse("https://video.sibnet.ru/shell.php?videoid=2235917");
@@ -23,4 +23,6 @@ void main() {
   });
   // todo sovetromantica https://sovetromantica.com/embed/episode_1459_1-subtitles
   // https://scu2.sovetromantica.com/anime/1459_sousou-no-frieren/episodes/subtitles/episode_1/episode_1.m3u8
+  
+
 }

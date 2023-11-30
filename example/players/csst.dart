@@ -1,4 +1,4 @@
-import 'package:libanime/libanime.dart';
+import 'package:libanime/parsers/anime.dart';
 
 /// CSST Examples
 void main(List<String> args) async {

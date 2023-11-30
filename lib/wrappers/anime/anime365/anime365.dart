@@ -3,11 +3,13 @@ import 'package:libanime/exceptions/bad_response.dart';
 import '../../../exceptions/unauthorized.dart';
 import './endpoints.dart';
 import 'package:dio/dio.dart';
+import '../../../utils/useragent.dart';
 
 
 class Anime365 {
   String? accessToken;
   final _dio = Dio()
+    ..options.headers = libUserAgent()
     ..options.baseUrl = mainUrl;
   Anime365([this.accessToken]);
 
