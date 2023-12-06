@@ -1,0 +1,64 @@
+import 'package:dio/dio.dart';
+import '../../../exceptions/bad_response.dart';
+import 'dart:async';
+
+class ShikimoriOAuth {
+  String applicationName;
+  String clientId;
+  final _domain = "shikimori.one";
+  String clientSecret;
+  String redirectUrl;
+  late final accessToken;
+  late final refreshToken;
+  static const _defaultScopes = ['user_rates', 'comments', 'topics'];
+
+  ShikimoriOAuth(this.clientId, this.clientSecret, this.applicationName, this.redirectUrl);
+  final _dio = Dio();
+
+  String generateAuthLink([List scopes = _defaultScopes]) {
+    return "https://$_domain/oauth/authorize?client_id=$clientId&redirect_uri=${Uri.encodeComponent(redirectUrl)}&response_type=code&scope=${scopes.join('+')}";
+  }
+
+  Future<Map<String, dynamic>?> getAccessToken(String code) async { // Map<String, String>?
+    try {
+      final requestData = {
+        'grant_type': 'authorization_code',
+        'client_id': clientId,
+        'client_secret': clientSecret,
+        'code': code,
+        'redirect_uri': redirectUrl
+      };
+      final res = await _dio.post("https://$_domain/oauth/token", data: requestData, 
+      options: Options(
+        headers: {
+          'User-Agent': applicationName
+        }
+      ));
+      accessToken = res.data["access_token"];
+      refreshToken = res.data["refresh_token"];
+      return res.data;
+    } on DioException catch (e) {
+        print(e.response!.data);
+      if (e.response!.statusCode == 404) {
+          //throw NotFoundException();
+        
+      } else {
+          throw BadResponseException();
+      }
+    }
+  }
+  Future<Map<String, dynamic>?>? whoami() async {
+    try {
+      final res = await _dio.get("https://$_domain/api/users/whoami", 
+      options: Options(
+        headers: {
+          'User-Agent': applicationName,
+          'Authorization': "Bearer $accessToken"
+        }
+      ));
+      return res.data;
+    } on DioException catch (e) {
+        print(e.response!.data);
+    }
+  }
+}
