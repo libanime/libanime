@@ -14,8 +14,8 @@ void main(List<String> args) async {
   var casts = await kodik.fetchCasts("32");
   print(casts);
 
-  // Get mappings from link [TOKEN REQUIRED]
-  var mappings = await kodik.mappingsFromLink(
+  // Get info about anime from link [TOKEN REQUIRED]
+  var mappings = await kodik.infoFromLink(
       "https://kodik.info/seria/1133512/04d5f7824ba3563bd78e44a22451bb45/720p");
   print(mappings);
 }

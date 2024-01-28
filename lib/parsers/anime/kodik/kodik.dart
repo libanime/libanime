@@ -113,23 +113,16 @@ class Kodik {
 
   // Search IDs via Kodik API by player_link field
   // Token required! So.. you can find it on the internet or mail them with request for access.
-  Future<Object>? mappingsFromLink(String link) async {
+  Future<Object>? infoFromLink(String link) async {
     if (token == null) {
       throw Exception("Token not set!");
     } else {
       try {
         final response = await _dio
-            .get('https://kodikapi.com/search?token=$token&player_link=$link');
+            .get('https://kodikapi.com/search?token=$token&player_link=$link&with_material_data=true');
 
         var data = response.data["results"][0];
-        return {
-          "kinopoisk":
-              data["kinopoisk_id"] ? data["kinopoisk_id"].toInt() : null,
-          "imdb": data["imdb_id"],
-          "worldart": data["worldart_link"],
-          "shikimori":
-              data["shikimori_id"] ? data["shikimori_id"].toInt() : null
-        };
+        return data['material_data'];
       } on DioException catch (e) {
         if (e.response!.statusCode == 500) {
           throw BadDataException("Bad Token or Player URL!");
