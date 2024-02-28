@@ -18,5 +18,7 @@ jobs:
           version: 3.13.9
       - name: Install dependencies
         run: flutter pub get
+      - name: Format
+        run: dart format .
       - name: Publish
         run: dart pub publish --force

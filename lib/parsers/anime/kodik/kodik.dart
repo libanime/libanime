@@ -32,7 +32,7 @@ class Kodik {
               r"(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]")
           .stringMatch(link);
       final res = await _dio.post(
-        "https://$domain/gvi",
+        "https://$domain/vdu",
         data: FormData.fromMap(data!),
         options: Options(headers: {
           "origin": "https://kodik.info",
