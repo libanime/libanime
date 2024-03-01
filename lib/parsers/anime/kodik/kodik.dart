@@ -8,6 +8,7 @@ import '../../../structures/languages.dart';
 import '../../../structures/kodik/kodik_player_data.dart';
 import '../../../exceptions/bad_data.dart';
 import 'dart:convert';
+import '../../../networking.dart' as networking;
 
 // Kodik player parser
 class Kodik {
@@ -18,7 +19,7 @@ class Kodik {
     return Service("kodik", Language.ru, true, MediaType.anime);
   }
 
-  var _dio = Dio();
+  final _dio = networking.dio;
   // Parse player url.
   // Returns Video object
   // ```dart

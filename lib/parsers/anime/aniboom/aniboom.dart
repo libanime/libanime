@@ -5,6 +5,7 @@ import '../../../structures/media_type.dart';
 import '../../../structures/languages.dart';
 import 'package:dio/dio.dart';
 import '../../detect.dart';
+import '../../../networking.dart' as networking;
 import 'package:xpath_selector_html_parser/src/ext.dart';
 import 'dart:convert';
 
@@ -16,7 +17,7 @@ class Aniboom {
     "User-Agent":
         "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/113.0.0.0 Safari/537.36",
   };
-  final _dio = Dio();
+  final _dio = networking.dio;
 
   Service getService() {
     return Service("aniboom", Language.ru, true, MediaType.anime);

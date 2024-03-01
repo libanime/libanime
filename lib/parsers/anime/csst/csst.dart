@@ -6,6 +6,7 @@ import 'package:dio/dio.dart';
 import '../../detect.dart';
 import '../../../structures/media_type.dart';
 import '../../../structures/languages.dart';
+import '../../../networking.dart' as networking;
 
 // secvideo aka. csst player parser
 // csst use default VideoJs, so you can use it for another VideoJs based player
@@ -13,7 +14,7 @@ import '../../../structures/languages.dart';
 class CSST {
   final regex =
       r"\[(?<quality>\d{3,4})p\](?<url>https?:\/\/(?:www\.)?.*?\.mp4)";
-  final _dio = Dio();
+  final _dio = networking.dio;
 
   Service getService() {
     return Service("csst/secvideo", Language.multi, true, MediaType.anime);

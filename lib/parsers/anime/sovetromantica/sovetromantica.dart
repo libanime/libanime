@@ -5,11 +5,12 @@ import '../../../structures/languages.dart';
 import 'package:dio/dio.dart';
 import '../../detect.dart';
 import '../../../exceptions/bad_data.dart';
+import '../../../networking.dart' as networking;
 
 class SovetRomantica {
   final _regex =
       r'https?:\/\/(www\.)?[a-z1-9]{1,6}\.sovetromantica\.com\/(?:anime|dorama)\/.*\.m3u8"';
-  final _dio = Dio();
+  final _dio = networking.dio;
 
   Service getService() {
     return Service("sovetromantica", Language.ru, true, MediaType.anime);

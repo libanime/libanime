@@ -6,11 +6,12 @@ import '../../../structures/media_type.dart';
 import '../../../structures/languages.dart';
 import 'package:dio/dio.dart';
 import '../../detect.dart';
+import '../../../networking.dart' as networking;
 
 // Sibnet player parser
 class Sibnet {
   final _regex = r'(?<url>\/v\/.*?\.mp4)';
-  final _dio = Dio();
+  final _dio = networking.dio;
 
   Service getService() {
     return Service("sibnet", Language.ru, true, MediaType.anime);

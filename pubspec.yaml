@@ -19,7 +19,7 @@ environment:
 
 dependencies:
   dio: ^5.3.3
-  dio_http2_adapter: ^2.3.1+1
+  dio_http2_adapter: ^2.5.0
   faker: ^2.1.0
   graphql: ^5.1.2
   html: ^0.15.4
