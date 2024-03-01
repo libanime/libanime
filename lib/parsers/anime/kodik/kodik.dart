@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:libanime/structures/video.dart';
+import '../../../structures/video.dart';
 import '../../detect.dart';
 //import '../../enum/services.dart';
 import '../../../structures/service.dart';
@@ -28,12 +28,10 @@ class Kodik {
   Future<Map<String, Video>>? parse(String link, [bool mp4 = false]) async {
     if (Detect().validate(link, "kodik")) {
       final data = await _parsePlayer(link);
-      final domain = RegExp(
-              r"(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]")
-          .stringMatch(link);
+      final domain = RegExp(r"(?:[a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z0-9][a-z0-9-]{0,61}[a-z0-9]").stringMatch(link);
       final res = await _dio.post(
-        "https://$domain/vdu",
-        data: FormData.fromMap(data!),
+        "https://$domain${await _getActualAPIEndpoint(data[1], domain.toString())}",
+        data: FormData.fromMap(data[0]),
         options: Options(headers: {
           "origin": "https://kodik.info",
           "accept": "application/json, text/javascript, */*; q=0.01",
@@ -97,15 +95,39 @@ class Kodik {
     return decodedText;
   }
 
+  Future<String>? _getActualAPIEndpoint(String player_res, String domain) async {
+    String pointPattern = r'''\$\.ajax\([^>]+,url:\s*atob\(["]([\w=]+)["']\)''';
+    final playerMin = await _dio.get(_getMinPlayerURL(domain, player_res));
+    var path = RegExp(pointPattern).firstMatch(playerMin.data)![1]; //[1]
+        
+        /*if (!path!.endsWith("=")) {
+          path = (path + "==");
+        }*/
+    final decoded_path = _decodeEndpoint(path!.toString());
+    return decoded_path;
+  }
+
+  String _getMinPlayerURL(String domain, String res) {
+    final min_player_path = RegExp(r'<script\s*type="text/javascript"\s*src="(/assets/js/app\.player_single.*?)">').firstMatch(res)![1];
+    return "https://$domain$min_player_path";
+  }
+
+  String _decodeEndpoint(String path) {
+    return utf8.decode(base64.decode(path));
+  }
+
   String _decodeUrl(String urlEncoded) {
     return utf8.decode(base64.decode(_caesarCipherDecoder(urlEncoded)));
   }
 
-  Future<Map<String, dynamic>>? _parsePlayer(String link) async {
+  Future<List> _parsePlayer(String link) async {
     final response = await _dio.get(link);
     if (response.statusCode == 200) {
       final data = KodikData().get(response.data);
-      return data;
+      return [
+          data, 
+          response.data
+      ];
     } else {
       throw Exception("An error has occurred");
     }
