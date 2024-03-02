@@ -12,19 +12,16 @@ class JikanManga {
     ..options.baseUrl = _mainUrl;
   JikanManga(this.mangaId);
 
-  
-
   Future<Map<String, dynamic>> get() async {
-  // https://api.jikan.moe/v4/manga/32/full
+    // https://api.jikan.moe/v4/manga/32/full
     try {
       final res = await _dio.get("$mangaId/full");
       return res.data["data"];
     } on DioException catch (e) {
       if (e.response!.statusCode == 404) {
-          throw NotFoundException();
-        
+        throw NotFoundException();
       } else {
-          throw BadResponseException();
+        throw BadResponseException();
       }
     }
   }
@@ -36,10 +33,9 @@ class JikanManga {
       return res.data["data"];
     } on DioException catch (e) {
       if (e.response!.statusCode == 404) {
-          throw NotFoundException();
-        
+        throw NotFoundException();
       } else {
-          throw BadResponseException();
+        throw BadResponseException();
       }
     }
   }
@@ -51,10 +47,9 @@ class JikanManga {
       return res.data["data"];
     } on DioException catch (e) {
       if (e.response!.statusCode == 404) {
-          throw NotFoundException();
-        
+        throw NotFoundException();
       } else {
-          throw BadResponseException();
+        throw BadResponseException();
       }
     }
   }

@@ -1,4 +1,5 @@
 library exceptions;
+
 export './bad_data.dart' show BadDataException;
 export './bad_response.dart' show BadResponseException;
 export './not_found.dart' show NotFoundException;

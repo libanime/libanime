@@ -6,7 +6,6 @@ import 'package:dio/dio.dart';
 import '../../../utils/useragent.dart';
 import '../../../networking.dart' as networking;
 
-
 class Anime365 {
   String? accessToken;
   final _dio = networking.dio
@@ -31,7 +30,7 @@ class Anime365 {
         throw Unauthorized();
       }
     } on DioException {
-        throw BadResponseException();
-      }
+      throw BadResponseException();
+    }
   }
 }

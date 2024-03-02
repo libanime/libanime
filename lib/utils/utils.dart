@@ -2,7 +2,8 @@ import './time.dart';
 import 'dart:convert';
 
 bool isEpisodeCompleted(double currentTime, double duration) {
-  final double endingTime = duration > minute * 10 ? minute * 3 : duration * 0.2;
+  final double endingTime =
+      duration > minute * 10 ? minute * 3 : duration * 0.2;
   final double timeLeft = duration - currentTime;
 
   return timeLeft <= endingTime;
@@ -20,4 +21,3 @@ String prettyPrint(Map input) {
   JsonEncoder encoder = new JsonEncoder.withIndent('  ');
   return encoder.convert(input);
 }
-

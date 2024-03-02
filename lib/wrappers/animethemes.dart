@@ -13,22 +13,21 @@ class AnimeThemes {
   AnimeThemes();
 
   Future<Map<String, dynamic>?> titleThemes(int id) async {
-  // nyan
+    // nyan
     try {
-      final res = await _dio.get("/anime?filter[has]=resources&filter[site]=MyAnimeList&filter[external_id]=$id&include=animethemes.animethemeentries.videos,animethemes.song.artists,studios,animethemes.animethemeentries.videos.audio");
+      final res = await _dio.get(
+          "/anime?filter[has]=resources&filter[site]=MyAnimeList&filter[external_id]=$id&include=animethemes.animethemeentries.videos,animethemes.song.artists,studios,animethemes.animethemeentries.videos.audio");
       List animes = res.data["anime"];
       if (animes.length == 1) {
         return animes[0];
       } else {
         throw NotFoundException();
       }
-      
     } on DioException catch (e) {
       if (e.response!.statusCode == 404) {
-          throw NotFoundException();
-        
+        throw NotFoundException();
       } else {
-          throw BadResponseException();
+        throw BadResponseException();
       }
     }
   }

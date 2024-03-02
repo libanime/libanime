@@ -14,18 +14,16 @@ class JikanAnime {
   JikanAnime(this.animeId);
   // ToDo to implement search
 
-
   Future<Map<String, dynamic>> get() async {
-  // https://api.jikan.moe/v4/anime/32/full
+    // https://api.jikan.moe/v4/anime/32/full
     try {
       final res = await _dio.get("$animeId/full");
       return res.data["data"];
     } on DioException catch (e) {
       if (e.response!.statusCode == 404) {
-          throw NotFoundException();
-        
+        throw NotFoundException();
       } else {
-          throw BadResponseException();
+        throw BadResponseException();
       }
     }
   }
@@ -37,10 +35,9 @@ class JikanAnime {
       return res.data["data"];
     } on DioException catch (e) {
       if (e.response!.statusCode == 404) {
-          throw NotFoundException();
-        
+        throw NotFoundException();
       } else {
-          throw BadResponseException();
+        throw BadResponseException();
       }
     }
   }
@@ -52,10 +49,9 @@ class JikanAnime {
       return res.data["data"];
     } on DioException catch (e) {
       if (e.response!.statusCode == 404) {
-          throw NotFoundException();
-        
+        throw NotFoundException();
       } else {
-          throw BadResponseException();
+        throw BadResponseException();
       }
     }
   }
@@ -67,14 +63,12 @@ class JikanAnime {
       return res.data["data"];
     } on DioException catch (e) {
       if (e.response!.statusCode == 404) {
-          throw NotFoundException();
-        
+        throw NotFoundException();
       } else {
-          throw BadResponseException();
+        throw BadResponseException();
       }
     }
   }
-  
 
   Future<Map<String, dynamic>> episode(int episodeNum) async {
     // https://api.jikan.moe/v4/anime/55644/episodes/1
@@ -84,15 +78,14 @@ class JikanAnime {
     } on DioException catch (e) {
       if (e.response!.statusCode == 500) {
         if (e.response!.data["type"] == "ParserException") {
-          throw BadDataException("You're used episodes endpoint not on serial.");
+          throw BadDataException(
+              "You're used episodes endpoint not on serial.");
         } else {
           throw BadResponseException();
         }
       } else {
-          throw BadResponseException();
+        throw BadResponseException();
       }
     }
-
-
   }
 }

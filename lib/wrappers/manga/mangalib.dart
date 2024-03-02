@@ -2,7 +2,7 @@ import 'package:dio_http2_adapter/dio_http2_adapter.dart';
 import 'package:dio/dio.dart';
 import 'package:html/parser.dart' as html;
 
-// LIBme family has same 
+// LIBme family has same
 // WARNING: this wrapper uses old Lib API, new api migrated to api.lib.social
 class LibMe {
   final _dio = Dio()
@@ -22,8 +22,7 @@ class LibMe {
 
   Future<Map> getShortInfoBySlug(String slug) async {
     try {
-      final response = await _dio.get(
-          '/manga-short-info?slug=$slug');
+      final response = await _dio.get('/manga-short-info?slug=$slug');
       return response.data;
     } on DioException catch (e) {
       if (e.response!.statusCode == 400) {

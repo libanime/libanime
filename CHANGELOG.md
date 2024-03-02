@@ -1,4 +1,4 @@
-## 0.0.9-1
+## 0.1.0
 
 * Kodik fixes
 * AnimeThemes Integration

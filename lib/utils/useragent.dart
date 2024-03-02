@@ -4,13 +4,9 @@ import 'package:faker/faker.dart';
 var faker = Faker();
 
 Map<String, dynamic> libUserAgent() {
-  return {
-    "User-Agent": "libanime/$libVer"
-  };
+  return {"User-Agent": "libanime/$libVer"};
 }
 
 Map<String, dynamic> randomUserAgent() {
-  return {
-    "User-Agent": faker.internet.userAgent(osName: 'Android')
-  };
+  return {"User-Agent": faker.internet.userAgent(osName: 'Android')};
 }
