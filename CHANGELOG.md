@@ -1,5 +1,11 @@
 ## 0.0.9-1
 
+* Kodik fixes
+* AnimeThemes Integration
+* Proxy Support
+
+## 0.0.9-1
+
 * Big update prerelease
 
 ## 0.0.8
