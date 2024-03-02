@@ -4,11 +4,12 @@ import '../../../exceptions/unauthorized.dart';
 import './endpoints.dart';
 import 'package:dio/dio.dart';
 import '../../../utils/useragent.dart';
+import '../../../networking.dart' as networking;
 
 
 class Anime365 {
   String? accessToken;
-  final _dio = Dio()
+  final _dio = networking.dio
     ..options.headers = libUserAgent()
     ..options.baseUrl = mainUrl;
   Anime365([this.accessToken]);

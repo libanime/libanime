@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import '../../../exceptions/bad_response.dart';
 import 'dart:async';
+import '../../../exceptions/not_found.dart';
+import '../../../networking.dart' as networking;
 
 class ShikimoriOAuth {
   String applicationName;
@@ -13,7 +15,7 @@ class ShikimoriOAuth {
   static const _defaultScopes = ['user_rates', 'comments', 'topics'];
 
   ShikimoriOAuth(this.clientId, this.clientSecret, this.applicationName, this.redirectUrl);
-  final _dio = Dio();
+  final _dio = networking.dio;
 
   String generateAuthLink([List scopes = _defaultScopes]) {
     return "https://$_domain/oauth/authorize?client_id=$clientId&redirect_uri=${Uri.encodeComponent(redirectUrl)}&response_type=code&scope=${scopes.join('+')}";
@@ -38,14 +40,15 @@ class ShikimoriOAuth {
       refreshToken = res.data["refresh_token"];
       return res.data;
     } on DioException catch (e) {
-        print(e.response!.data);
+        //print(e.response!.data);
       if (e.response!.statusCode == 404) {
-          //throw NotFoundException();
+          throw NotFoundException();
         
       } else {
           throw BadResponseException();
       }
     }
+    
   }
   Future<Map<String, dynamic>?>? whoami() async {
     try {
@@ -58,7 +61,9 @@ class ShikimoriOAuth {
       ));
       return res.data;
     } on DioException catch (e) {
-        print(e.response!.data);
+        //print(e.response!.data);
+        throw BadResponseException();
     }
+    
   }
 }
