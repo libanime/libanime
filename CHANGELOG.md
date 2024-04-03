@@ -1,3 +1,8 @@
+## 0.1.1
+
+* Kodik fixes
+* Proxy Support temporary removed
+
 ## 0.1.0
 
 * Kodik fixes

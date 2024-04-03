@@ -9,6 +9,7 @@ import '../../../structures/kodik/kodik_player_data.dart';
 import '../../../exceptions/bad_data.dart';
 import 'dart:convert';
 import '../../../networking.dart' as networking;
+import '../../../utils/useragent.dart';
 
 // Kodik player parser
 class Kodik {
@@ -39,8 +40,7 @@ class Kodik {
           "origin": "https://kodik.info",
           "accept": "application/json, text/javascript, */*; q=0.01",
           "referer": "https://$domain",
-          "user-agent":
-              "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36",
+          ...randomUserAgent(),
           'x-requested-with': 'XMLHttpRequest'
         }),
       );
@@ -102,11 +102,13 @@ class Kodik {
       String player_res, String domain) async {
     String pointPattern = r'''\$\.ajax\([^>]+,url:\s*atob\(["]([\w=]+)["']\)''';
     final playerMin = await _dio.get(_getMinPlayerURL(domain, player_res));
+    //print(playerMin.data);
     var path = RegExp(pointPattern).firstMatch(playerMin.data)![1]; //[1]
 
     /*if (!path!.endsWith("=")) {
           path = (path + "==");
         }*/
+
     final decoded_path = _decodeEndpoint(path!.toString());
     return decoded_path;
   }

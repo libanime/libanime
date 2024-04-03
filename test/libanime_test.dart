@@ -1,4 +1,4 @@
-import 'package:libanime/parsers/anime.dart';
+import '../lib/parsers/anime.dart';
 import 'package:test/test.dart';
 
 void main() {
