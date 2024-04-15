@@ -1,4 +1,4 @@
-import '../lib/parsers/anime.dart';
+import 'package:libanime/parsers/anime.dart';
 
 void main(List<String> args) async {
   final kodik = Kodik();
