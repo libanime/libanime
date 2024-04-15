@@ -99,9 +99,9 @@ class Kodik {
   }
 
   Future<String>? _getActualAPIEndpoint(
-      String player_res, String domain) async {
+      String playerRes, String domain) async {
     String pointPattern = r'''\$\.ajax\([^>]+,url:\s*atob\(["]([\w=]+)["']\)''';
-    final playerMin = await _dio.get(_getMinPlayerURL(domain, player_res));
+    final playerMin = await _dio.get(_getMinPlayerURL(domain, playerRes));
     //print(playerMin.data);
     var path = RegExp(pointPattern).firstMatch(playerMin.data)![1]; //[1]
 
@@ -109,15 +109,15 @@ class Kodik {
           path = (path + "==");
         }*/
 
-    final decoded_path = _decodeEndpoint(path!.toString());
-    return decoded_path;
+    final decodedPath = _decodeEndpoint(path!.toString());
+    return decodedPath;
   }
 
   String _getMinPlayerURL(String domain, String res) {
-    final min_player_path = RegExp(
+    final minPlayerPath = RegExp(
             r'<script\s*type="text/javascript"\s*src="(/assets/js/app\.player_single.*?)">')
         .firstMatch(res)![1];
-    return "https://$domain$min_player_path";
+    return "https://$domain$minPlayerPath";
   }
 
   String _decodeEndpoint(String path) {
