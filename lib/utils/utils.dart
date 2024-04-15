@@ -10,7 +10,7 @@ bool isEpisodeCompleted(double currentTime, double duration) {
 }
 /*
 Future<int> malToAnilist(int malId) {
-  
+
 }*/
 
 Future wait(int seconds) async {
@@ -18,6 +18,6 @@ Future wait(int seconds) async {
 }
 
 String prettyPrint(Map input) {
-  JsonEncoder encoder = new JsonEncoder.withIndent('  ');
+  JsonEncoder encoder = const JsonEncoder.withIndent('  ');
   return encoder.convert(input);
 }
