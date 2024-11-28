@@ -9,11 +9,9 @@
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=libanime&repo=libanime)](https://github.com/libanime/libanime/)
 
 
-# Docs
-Need to do
+# Warning ⚠️ 
+Project no longer maintained. Check `dev` branch for some new parsers/wrappers.
 
-# Caching
-Caching not implemented in library.
 
 # Examples
 See [here](https://github.com/libanime/libanime/tree/main/example).
